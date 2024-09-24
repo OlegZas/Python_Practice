@@ -215,43 +215,178 @@ unique_set.intersection(set2)
 # Dictionary - like a map, An ordered collection of key-value pairs, where each key is unique and changeable.
 # As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
 # *************************************************************************
-# The data type of the dictionary is dict 
+# The data type of the dictionary is dict  
 # 1. Getting the value 
-data_dict = {"name": "Alice", "age": 25}
-data_dict['age'] # Get specific value 
+profile_dict = {"name": "Alice", "age": 25}
+profile_dict['age']  # Get specific value 
 # or use method .get()
-name_value = data_dict.get("name")
+name_value = profile_dict.get("name")
 print(name_value)
+
 # 2. Adding elements to a dictionary 
-data_dict['key3'] = 5655
-data_dict['age'] = 21
-data_dict
+profile_dict['key3'] = 5655
+profile_dict['age'] = 21
+profile_dict
+
 # 3. Getting just the keys or values 
-data_dict.keys()
-data_dict.values()
+profile_dict.keys()
+profile_dict.values()
+
 # 4. Convert to a list 
-keys_list = list(data_dict.keys())
+keys_list = list(profile_dict.keys())
 print(keys_list)
 
 # 5. Get items() - The items() method will return each item in a dictionary, as tuples in a list.
-items_view = data_dict.items()
+items_view = profile_dict.items()
 items_view
-data_dict
-#
-for key, value in data_dict.items():
+profile_dict
+
+for key, value in profile_dict.items():
     print(f"Key: {key}, Value: {value}")
 
 # 6. Check if the key exists 
-example_dict = {
-  "brand": "Ford",
-  "model": "Mustang",
-  "year": 1964
+car_info_dict = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
 }
-if "model" in example_dict:
-  print("Yes, 'model' is one of the keys in the example_dict dictionary")
+if "model" in car_info_dict:
+    print("Yes, 'model' is one of the keys in the car_info_dict dictionary")
 
 # 7. Update Dictionary
-example_dict.update({"year": 2020})
+car_info_dict.update({"year": 2020})
+
+# 8. Removing Items 
+# The pop() method removes the item with the specified key name:
+vehicle_info_dict = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+}
+vehicle_info_dict.pop("model")
+print(vehicle_info_dict)
+
+# The del keyword removes the item with the specified key name:
+vehicle_info_dict = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+}
+del vehicle_info_dict["model"]
+print(vehicle_info_dict)
+
+# del can delete the dictionary completely 
+vehicle_info_dict = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+}
+del vehicle_info_dict
+# print(vehicle_info_dict)  # this will cause an error because "vehicle_info_dict" no longer exists.
+
+# The clear() method empties the dictionary:
+vehicle_info_dict = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+}
+vehicle_info_dict.clear()
+print(vehicle_info_dict)
+
+# 9. Loop Dictionaries 
+# You can loop through a dictionary by using a for loop.
+# When looping through a dictionary, the return value are the keys of the dictionary, but there are methods to return the values as well.
+#a. For loop: Print all key names in the dictionary, one by one:
+vehicle_info_dict = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+}
+for x in vehicle_info_dict:
+    print(x)
+
+#b. Print all values in the dictionary, one by one:
+vehicle_info_dict = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+}
+for x in vehicle_info_dict.values():
+    print(x)
+
+#c. You can use the keys() method to return the keys of a dictionary:
+for x in vehicle_info_dict.keys():
+    print(x)
+
+#d. Loop through both keys and values, by using the items() method:
+for x, y in vehicle_info_dict.items():
+    print(x, y)
+
+# 10. COPY dictionary 
+#a. Make a copy of a dictionary with the copy() method:
+vehicle_info_dict = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+}
+my_vehicle_dict = vehicle_info_dict.copy()
+print(my_vehicle_dict)
+
+# b. Make a copy of a dictionary with the dict() function:
+vehicle_info_dict = {
+    "brand": "Ford",
+    "model": "Mustang",
+    "year": 1964
+}
+my_vehicle_dict = dict(vehicle_info_dict)
+print(my_vehicle_dict)
+
+# 11. Nested Dictionaries - a dictionary within a dictionary 
+#a. Create a dictionary that contain three dictionaries:
+my_family = {
+    "child1": {
+        "name": "Emil",
+        "year": 2004
+    },
+    "child2": {
+        "name": "Tobias",
+        "year": 2007
+    },
+    "child3": {
+        "name": "Linus",
+        "year": 2011
+    }
+}
+
+#b. Create three dictionaries, then create one dictionary that will contain the other three dictionaries:
+kid1 = {
+    "name": "Emil",
+    "year": 2004
+}
+kid2 = {
+    "name": "Tobias",
+    "year": 2007
+}
+kid3 = {
+    "name": "Linus",
+    "year": 2011
+}
+my_family = {
+    "child1": kid1,
+    "child2": kid2,
+    "child3": kid3
+}
+
+#c. Access items in nested dictionaries. To access items from a nested dictionary, you use the name of the dictionaries, starting with the outer dictionary:
+# Print the name of child 2:
+print(my_family["child2"]["name"])
+
+# d. Loop through nested dictionary using items()
+for x, obj in my_family.items():
+    print(x)  # Print the key (e.g., 'child1', 'child2', 'child3')
+    for y, value in obj.items():  # Use obj.items() to get key-value pairs
+        print(y + ':', value)  # Print the key and value
+
 
 # *************************************************************************
 # Tuples - An ordered, immutable collection of items (cannot be changed after creation).
